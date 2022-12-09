@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Api\ArticleController;
+use App\Http\Controllers\Api\LoginController;
+use App\Http\Controllers\Api\ProfileController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +17,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::post('login', [LoginController::class, 'login']);
+
+Route::get('article', [ArticleController::class, 'index']);
+Route::post('article/store', [ArticleController::class, 'store']);
+Route::post('article/{id}/update', [ArticleController::class, 'update']);
+Route::delete('article/{id}/delete', [ArticleController::class, 'destroy']);
